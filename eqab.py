@@ -1,18 +1,22 @@
-from aiogram import Bot, Dispatcher, types
-import logging
+from telegram import Bot
+from telegram.ext import Updater, CommandHandler
 
-# توكن البوت
 API_TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
 
-logging.basicConfig(level=logging.INFO)
+# دالة لبدء المحادثة مع البوت
+def start(update, context):
+    update.message.reply_text("مرحباً! تم اختبار الكود بنجاح!")
 
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
+def main():
+    updater = Updater(API_TOKEN, use_context=True)
+    dispatcher = updater.dispatcher
 
-@dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    await message.reply("مرحباً! تم اختبار الكود بنجاح!")
+    # إضافة معالج للأوامر
+    dispatcher.add_handler(CommandHandler("start", start))
+
+    # بدء البوت
+    updater.start_polling()
+    updater.idle()
 
 if __name__ == '__main__':
-    from aiogram import executor
-    executor.start_polling(dp, skip_updates=True)
+    main()
