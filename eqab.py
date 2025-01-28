@@ -7,7 +7,7 @@ import string
 API_TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)  # استخدام types.ParseMode هنا
+bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)  # استخدم types.ParseMode مباشرة
 dp = Dispatcher(bot)
 
 user_data = {}
@@ -38,7 +38,7 @@ def generate_code(length=8):
 
 # وظيفة للتحقق من صلاحية الكود
 def validate_code(code):
-    return code in active_codes and active_codes[code]['used'] == False
+    return code in active_codes and not active_codes[code]['used']
 
 # إنشاء كود جديد من قبل الأدمن
 @dp.message_handler(commands=['create_code'])
