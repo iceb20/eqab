@@ -3,13 +3,15 @@ import logging
 import random
 import time
 import string
+from aiogram.enums import ParseMode  # التعديل هنا
 
 API_TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)  # استخدم types.ParseMode مباشرة
+bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)  # التعديل هنا
 dp = Dispatcher(bot)
 
+# باقي الكود كما هو...
 user_data = {}
 leaderboard = {}
 active_codes = {}
