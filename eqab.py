@@ -1,20 +1,17 @@
-from telegram import Bot
-from telegram.ext import Application, CommandHandler
+from aiogram import Bot, Dispatcher
+from aiogram.types import Message
+from aiogram.enums import ParseMode
 
-# استبدل TOKEN الخاص بك
-TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
+API_TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
 
-async def start(update, context):
-    await update.message.reply_text('مرحبًا! البوت يعمل.')
+# إعداد البوت مع تمكين الـ ParseMode
+bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)  # يمكنك استخدام MarkdownV2 إذا كنت تفضل ذلك
+dp = Dispatcher()
 
-def main():
-    application = Application.builder().token(TOKEN).build()
+@dp.message()
+async def echo(message: Message):
+    # الرد على الرسائل بنفس التنسيق
+    await message.answer(f"<b>Echo:</b> {message.text}")
 
-    # إضافة معالج للأمر '/start'
-    application.add_handler(CommandHandler('start', start))
-
-    # بدء البوت
-    application.run_polling()
-
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    dp.run_polling(bot)
