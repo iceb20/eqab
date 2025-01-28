@@ -7,7 +7,7 @@ import string
 API_TOKEN = '1922426592:AAE9Z5qIVVh97Gx8ow2gE8zxyd7CD1GIG2M'
 
 logging.basicConfig(level=logging.INFO)
-bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)
+bot = Bot(token=API_TOKEN, parse_mode=types.ParseMode.HTML)  # استخدام types.ParseMode هنا
 dp = Dispatcher(bot)
 
 user_data = {}
@@ -157,4 +157,3 @@ async def check_ban(message: types.Message):
 if __name__ == '__main__':
     from aiogram import executor
     executor.start_polling(dp, skip_updates=True)
-    
